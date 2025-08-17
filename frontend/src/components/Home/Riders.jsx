@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import {  Send } from 'lucide-react';
-import { useAppContext } from '../context/useAppContext';
-import { benefits } from '../lib';
-import RiderCard from './ui/RiderCard';
+import { useAppContext } from '../../context/useAppContext';
+import { benefits } from '../../lib';
+import RiderCard from '../ui/RiderCard';
 
 const Riders = () => {
   const { riders } = useAppContext();

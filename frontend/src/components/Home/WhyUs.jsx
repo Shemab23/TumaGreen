@@ -1,6 +1,6 @@
 import React from 'react';
 import {motion as Motion } from 'framer-motion';
-import { features } from '../lib';
+import { features } from '../../lib';
 
 const WhyTumaGreenSection = () => {
   return (

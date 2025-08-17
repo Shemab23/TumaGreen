@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import TestimonialCard from './ui/TestimonialCard';
-import { testimonials } from '../lib';
+import TestimonialCard from '../ui/TestimonialCard';
+import { testimonials } from '../../lib';
 
 const TestimonialsSection = () => {
 

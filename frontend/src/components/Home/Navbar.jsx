@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import { navLinks } from '../lib'
-import { useAppContext } from '../context/useAppContext'
+import { navLinks } from '../../lib/index'
+import { useAppContext } from '../../context/useAppContext'
 import { motion as Motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import {BrowserRouter as Router , Routes, Route,useNavigate} from 'react-router-dom'
+
 
 const Navbar = () => {
   const { activeSection, setActiveSection } = useAppContext();
   const [visible, setVisible] = useState(false);
+
+    const navigate = useNavigate();
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -19,14 +23,16 @@ const Navbar = () => {
   const handleClick = () => {
     setVisible(!visible);
   };
-
   return (
-    <nav className='fixed top-0 w-full z-50 flex justify-between px-12 py-4 bg-white/80'>
+      <nav className='fixed top-0 w-full z-50 flex justify-between px-12 py-4 bg-white/80'>
       <Motion.div
-        className='flex flex-row'
+        className='flex flex-row cursor-pointer'
         initial={{ x: -50, scale: 0.4 }}
         animate={{ x: 0, scale: 1 }}
         transition={{ duration: 0.6 }}
+        whileHover={{scale: 1.1 }}
+        whileTap={{scale: 0.9 }}
+        onClick={()=>alert(`to home`)}
       >
         <img src="/logo2.png" alt="Logo" />
         <h3 className='font-semibold text-[var(--primary)]'>TumaGreen</h3>
@@ -37,7 +43,7 @@ const Navbar = () => {
         {navLinks.map((link, i) => (
           <Motion.p
             key={i}
-            className={`text-sm md:text-sm lg:text-lg xl:text-xl font-medium transition-colors hover:text-green-600 ${
+            className={`text-sm md:text-sm lg:text-md xl:text-lg font-medium transition-colors hover:text-green-600 ${
               activeSection === link.id
                 ? 'text-green-600 underline underline-offset-4 decoration-2 decoration-green-500 font-semibold text-lg'
                 : 'text-green-700 font-semibold text-md'
@@ -50,6 +56,14 @@ const Navbar = () => {
             {link.title}
           </Motion.p>
         ))}
+        <Motion.button className='bg-blue-500 py-2 px-4 text-lg inter font-semibold text-white rounded-lg cursor-pointer'
+          initial={{scale: 0.3 , y: -10}}
+          animate={{scale: 1 , y: 0}}
+          transition={{duration: 0.5}}
+          whileHover={{scale: 1.2 }}
+          whileTap={{scale: 0.9 }}
+          onClick={()=>navigate('/login')}
+        >Login</Motion.button>
       </ul>
 
       {/* Mobile Menu */}
@@ -75,6 +89,14 @@ const Navbar = () => {
             {link.title}
           </Motion.p>
         ))}
+        <Motion.button className='bg-blue-500 py-2 px-4 text-lg inter font-semibold text-white rounded-lg cursor-pointer'
+          initial={{scale: 0.3 , y: -10}}
+          animate={{scale: 1 , y: 0}}
+          transition={{duration: 0.5}}
+          whileHover={{scale: 1.2 }}
+          whileTap={{scale: 0.9 }}
+          onClick={()=>navigate('/login')}
+        >Login</Motion.button>
           </div>
         )}
       </div>
@@ -82,4 +104,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar;
+export default Navbar

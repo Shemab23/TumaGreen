@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { Phone, Mail, MapPin as MapPinIcon, HelpCircle, MessageSquare } from 'lucide-react';
-import { useAppContext } from '../context/useAppContext';
-import { faqs } from '../lib';
+import { useAppContext } from '../../context/useAppContext';
+import { faqs } from '../../lib';
 
 const ContactSection = () => {
   const { handleContactSubmit } = useAppContext();
@@ -25,7 +25,7 @@ const ContactSection = () => {
 
 
   return (
-    <section id="contactus" className="py-16 sm:py-20 bg-white text-black ">
+    <section id="absolute contactus" className="py-16 sm:py-20 bg-white text-black ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Motion.div
           className="text-center mb-12 sm:mb-16"

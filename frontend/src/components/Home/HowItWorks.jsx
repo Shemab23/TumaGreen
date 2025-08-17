@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { steps } from '../lib';
+import { steps } from '../../lib';
 
 const HowItWorksSection = () => {
 

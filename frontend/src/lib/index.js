@@ -91,3 +91,52 @@ export const benefits = [
     { q: "Are the delivery fees fixed?", a: "Delivery fees are calculated based on distance and package size. You'll see the transparent pricing before confirming your booking." },
     { q: "How does TumaGreen contribute to sustainability?", a: "Our entire fleet consists of electric vehicles, significantly reducing carbon emissions. We also optimize routes for efficiency, further minimizing environmental impact." },
   ];
+
+
+// To experiment the table
+export const tableHeaders = ["ID", "Name", "Action", "Date"];
+
+// Example history-like grouped data
+export const tableData = [
+  {
+    group: "This Week",
+    rows: [
+      [1, "Alice Johnson", "Logged In", "2025-08-12"],
+      [2, "Bob Smith", "Viewed Profile", "2025-08-13"],
+      [3, "Charlie Brown", "Updated Settings", "2025-08-15"],
+      [4, "Diana Prince", "Logged Out", "2025-08-16"],
+      [5, "Edward Norton", "Uploaded Document", "2025-08-16"],
+    ],
+  },
+  {
+    group: "Last Week",
+    rows: [
+      [6, "Fiona Gallagher", "Deleted Account", "2025-08-08"],
+      [7, "George Michael", "Uploaded File", "2025-08-09"],
+      [8, "Hannah Lee", "Logged In", "2025-08-10"],
+      [9, "Isaac Newton", "Commented on Post", "2025-08-11"],
+      [10, "Julia Roberts", "Reset Password", "2025-08-11"],
+    ],
+  },
+  {
+    group: "Last Month",
+    rows: [
+      [11, "Kevin Hart", "Sent Message", "2025-07-25"],
+      [12, "Laura Palmer", "Joined Group", "2025-07-29"],
+      [13, "Mike Ross", "Logged Out", "2025-07-30"],
+      [14, "Natalie Portman", "Started Session", "2025-07-15"],
+      [15, "Oliver Twist", "Changed Email", "2025-07-05"],
+    ],
+  },
+  {
+    group: "Earlier This Year",
+    rows: [
+      [16, "Paul Walker", "Posted Update", "2025-06-03"],
+      [17, "Quinn Fabray", "Shared File", "2025-06-15"],
+      [18, "Rachel Green", "Added Friend", "2025-06-22"],
+      [19, "Steve Jobs", "Created Project", "2025-03-05"],
+      [20, "Tony Stark", "Archived Report", "2025-02-19"],
+      [21, "Uma Thurman", "Deactivated Account", "2025-01-12"],
+    ],
+  },
+];

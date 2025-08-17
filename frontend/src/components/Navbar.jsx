@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
   const { activeSection, setActiveSection } = useAppContext();
-  const [visible, setVisible] = useState(false); // ✅ fixed
+  const [visible, setVisible] = useState(false);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -37,7 +37,7 @@ const Navbar = () => {
         {navLinks.map((link, i) => (
           <Motion.p
             key={i}
-            className={`text-sm md:text-sm lg:text-lg xl:text-2xl font-medium transition-colors hover:text-green-600 ${
+            className={`text-sm md:text-sm lg:text-lg xl:text-xl font-medium transition-colors hover:text-green-600 ${
               activeSection === link.id
                 ? 'text-green-600 underline underline-offset-4 decoration-2 decoration-green-500 font-semibold text-lg'
                 : 'text-green-700 font-semibold text-md'
@@ -57,7 +57,7 @@ const Navbar = () => {
         {!visible ? (
           <Menu size={32} className='cursor-pointer' onClick={handleClick} />
         ) : (
-          <div className='absolute top-0 right-0 h-[40vh] w-[30vw] bg-blue-100/80 p-4 flex flex-col gap-3 rounded-xl cursor-pointer'>
+          <div className='absolute top-0 right-0 min-h-[40vh] min-w-[30vw] bg-blue-100/80 p-4 flex flex-col gap-3 rounded-xl cursor-pointer'>
             <X className='cursor-pointer' onClick={handleClick} size={35}/>
             {navLinks.map((link, i) => (
           <Motion.p

@@ -13,19 +13,23 @@ const ContactSection = () => {
     message: '',
   });
 
+  const [success, setSuccess] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleContactSubmit(formData);
-    setFormData({ name: '', email: '', subject: '', message: '' }); // Reset form
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  handleContactSubmit(formData); // push to DB or API
+  setFormData({ name: '', email: '', subject: '', message: '' });
+  setSuccess(true);
+  setTimeout(() => setSuccess(false), 3000); // hide after 3s
+};
 
 
   return (
-    <section id="absolute contactus" className="py-16 sm:py-20 bg-white text-black ">
+    <section id="contactus" className="py-16 sm:py-20 bg-white text-black ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Motion.div
           className="text-center mb-12 sm:mb-16"
@@ -58,6 +62,8 @@ const ContactSection = () => {
                 Your Name
                 <input type="text" name="name" id="contact-name" value={formData.name} onChange={handleChange} required className="border border-green-600/70 rounded-lg h-[40px] mt-1  px-3 bg-white" />
               </div>
+              {success && <p className="absolut bottom-1 right-1 text-green-600 font-medium">Message sent successfully!</p>}
+
               <div className='flex flex-col text-black'>
                 Your Email
                 <input type="email" name="email" id="contact-email" value={formData.email} onChange={handleChange} required className="border border-green-600/70 rounded-lg h-[40px] mt-1  px-3 bg-white"/>

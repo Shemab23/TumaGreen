@@ -1,60 +1,96 @@
 import React, { useState } from 'react';
-import LoginUser from '../components/Login/LoginUser'
-import LoginRider from '../components/Login/LoginRider';
-import {motion as Motion} from 'framer-motion'
+import { FadePage, FadeInUp, FadeInDown, ZoomIn } from '../components/motion/animations';
 import { useNavigate } from 'react-router-dom';
+import { Leaf, Users, Truck } from 'lucide-react';
+import LoginUser from '../components/Login/LoginUser';
+import LoginRider from '../components/Login/LoginRider';
+
+// Floating icon component
+const FloatingIcon = ({ icon: Icon, size = 12, top, left, delay = 0 }) => (
+  <FadeInUp delay={delay} y={20}>
+    <div
+      className="absolute text-green-500 opacity-30"
+      style={{ top: `${top}%`, left: `${left}%`, fontSize: `${size}px` }}
+    >
+      {Icon && <Icon className="w-full h-full" />}
+    </div>
+  </FadeInUp>
+);
 
 const Login = () => {
   const navigate = useNavigate();
-  const [kind, setKind] = useState('user');
+  const [kind, setKind] = useState('user');/// toggle to have
+
+  const Logo = () => (
+    <FadeInDown>
+      <div
+        className="flex items-center cursor-pointer gap-2"
+        onClick={() => navigate('/')}
+      >
+        <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+          Logo
+        </div>
+        <h3 className="font-semibold text-[var(--primary)] text-lg sm:text-xl">TumaGreen</h3>
+      </div>
+    </FadeInDown>
+  );
+
+const SwitchButton = ({ toKind, label }) => (
+  <ZoomIn>
+    <button
+      onClick={() => setKind(toKind)}
+      className="absolute top-3 right-3 bg-blue-600 text-white px-4 py-2 rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition-colors z-30"
+    >
+      {label}
+    </button>
+  </ZoomIn>
+);
+
 
   return (
-    <div className='h-screen w-screen bg-[var(--bg2)] flex-center relative'>
-      {kind === 'user' ? (
-        <div>
-          <div className='px-2 absolute top-3 leeft-3'>
-                <Motion.div
-            className='flex flex-row cursor-pointer'
-            initial={{ x: -50, scale: 0.4 }}
-            animate={{ x: 0, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            whileHover={{scale: 1.1 }}
-            whileTap={{scale: 0.9 }}
-            onClick={()=>navigate('/')}
-          >
-            <img src="/logo2.png" alt="Logo" />
-            <h3 className='font-semibold text-[var(--primary)]'>TumaGreen</h3>
-          </Motion.div>
-          </div>
-          <button onClick={() => setKind('rider')}
-          className='absolute top-3 right-3 bg-blue-600 text-white p-3 rounded-xl font-semibold cursor-pointer'
-          >Switch to rider
-          </button>
-          <LoginUser/>
+    <div className='relative'>
+           {/* Switch button */}
+           <div className='absolute top-0 right-0'>
+        {kind === 'user' ? (
+          <SwitchButton toKind="rider" label="Rider" />
+        ) : (
+          <SwitchButton toKind="user" label="User" />
+        )}
+           </div>
+    <FadePage>
+      <div className="h-screen w-screen bg-[var(--bg2)] flex flex-col items-center justify-center relative px-4 overflow-hidden">
+
+        {/* Floating icons */}
+        <FloatingIcon icon={Leaf} size={24} top={10} left={15} delay={0.1} />
+        <FloatingIcon icon={Users} size={30} top={70} left={20} delay={0.3} />
+        <FloatingIcon icon={Truck} size={36} top={40} left={80} delay={0.5} />
+        <FloatingIcon icon={Leaf} size={18} top={80} left={50} delay={0.7} />
+
+        {/* Central image placeholder */}
+
+          <img
+          src="loginbg.jpg"
+          alt="background"
+          className="fixed inset-0 w-full h-full object-cover z-[0]"
+        />
+        {/* Blur overlay */}
+<div className="fixed inset-0 bg-white/40 z-1"></div>
+
+        {/* Top logo */}
+        <div className="absolute top-3 left-3 z-5">
+          <Logo />
         </div>
-      ) : (
-        <div>
-          <div className='px-2 absolute top-3 leeft-3'>
-                <Motion.div
-            className='flex flex-row cursor-pointer'
-            initial={{ x: -50, scale: 0.4 }}
-            animate={{ x: 0, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            whileHover={{scale: 1.1 }}
-            whileTap={{scale: 0.9 }}
-             onClick={()=>navigate('/')}
-          >
-            <img src="/logo2.png" alt="Logo" />
-            <h3 className='font-semibold text-[var(--primary)]'>TumaGreen</h3>
-          </Motion.div>
+
+
+
+        {/* Login form */}
+        <FadeInUp>
+          <div className="w-full max-w-md mt-8 relative z-10">
+            {kind === 'user' ? <LoginUser /> : <LoginRider />}
           </div>
-          <button onClick={() => setKind('user')}
-          className='absolute top-3 right-3 bg-blue-600 text-white p-3 rounded-xl font-semibold cursor-pointer'
-          >Switch to user
-          </button>
-          <LoginRider/>
-        </div>
-      )}
+        </FadeInUp>
+      </div>
+    </FadePage>
     </div>
   );
 };

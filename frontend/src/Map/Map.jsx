@@ -1,25 +1,24 @@
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
-import { useState, useEffect } from 'react';
+import { FadeInUp } from '../components/motion/animations';
+import 'leaflet/dist/leaflet.css';
 
 export default function MapInParent() {
-  const fallbackCenter = [-1.9490, 30.0605]; // Kigali fallback
+  const fallbackCenter = [-1.949, 30.0605];
   const [userLocation, setUserLocation] = useState(null);
 
   const CustomIcon = new Icon({
-    iconUrl: "/icon.png",
+    iconUrl: '/icon.png', // make sure this exists in /public
     iconSize: [38, 38],
   });
 
-  // Get user location once
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation([position.coords.latitude, position.coords.longitude]);
-        },
-        (error) => {
-          console.error("Geolocation error:", error);
+        (pos) => setUserLocation([pos.coords.latitude, pos.coords.longitude]),
+        (err) => {
+          console.error('Geolocation error:', err);
           setUserLocation(null);
         }
       );
@@ -27,22 +26,26 @@ export default function MapInParent() {
   }, []);
 
   return (
-    <MapContainer
-      center={userLocation || fallbackCenter} // center on user if available
-      zoom={14}
-      style={{ height: "100%", width: "100%" }} // fill parent
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <FadeInUp>
+      <div className="w-full h-[300px] rounded-lg overflow-hidden shadow-md">
+        <MapContainer
+          center={userLocation || fallbackCenter}
+          zoom={14}
+          scrollWheelZoom={true}
+          style={{ height: '100%', width: '100%' }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
 
-      {/* Only show user marker if available */}
-      {userLocation && (
-        <Marker position={userLocation} icon={CustomIcon}>
-          <Popup>My location</Popup>
-        </Marker>
-      )}
-    </MapContainer>
+          {userLocation && (
+            <Marker position={userLocation} icon={CustomIcon}>
+              <Popup className="text-green-800 font-semibold">My Location</Popup>
+            </Marker>
+          )}
+        </MapContainer>
+      </div>
+    </FadeInUp>
   );
 }

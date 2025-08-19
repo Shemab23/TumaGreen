@@ -1,75 +1,110 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FadeInUp, ZoomIn } from "../motion/animations";
-import { Youtube } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Lock, LogIn, UserPlus } from "lucide-react";
 
 const LoginRider = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleLogin = () => {
+    // Your login logic here
+    navigate("/rider");
+  };
+
   return (
-    <section className="w-full min-h-screen  flex items-center justify-center px-4">
-      <FadeInUp>
-        <div className="bg-gray-200/40 border-2 border-white rounded-xl shadow-lg flex flex-col items-center gap-6 p-6 sm:p-10 w-full max-w-md">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center">
+    <section
+      className="min-h-screen flex items-center justify-center px-4 py-12 bg-cover bg-center"
+      style={{ backgroundImage: "url('/assets/rider-background.png')" }}
+    >
+      <motion.div
+        className="w-full max-w-xl py-6 px-8 rounded-2xl shadow-2xl bg-white border border-gray-200 text-gray-900"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="text-center mb-6">
+          <h2 className="text-4xl font-extrabold text-green-600 mb-2">
             Riders' Login
           </h2>
+          <p className="text-gray-600 text-lg">
+            Welcome back! Please sign in to continue.
+          </p>
+        </div>
 
-          <ZoomIn>
-            <button
-              className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg w-full"
-              onClick={() => alert("Apply Google login")}
-            >
-              <Youtube className="w-5 h-5" /> Login with Google
-            </button>
-          </ZoomIn>
+        {/* Google Login Button */}
+        <motion.button
+          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg mb-6 transition-colors duration-200 shadow-lg border border-gray-300 bg-gray-200 text-gray-800 hover:bg-gray-300"
+          onClick={() => alert("Apply Google login")}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" className="w-6 h-6" />
+          Login with Google
+        </motion.button>
+        
+        <div className="flex items-center my-4">
+          <div className="flex-grow border-t border-gray-300"></div>
+          <span className="flex-shrink mx-4 text-gray-500">or</span>
+          <div className="flex-grow border-t border-gray-300"></div>
+        </div>
 
-          <form className="w-full grid gap-3">
-            <label className="font-semibold text-lg">Email</label>
+        {/* Form */}
+        <form className="w-full grid gap-4">
+          <div className="relative">
+            <Mail className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your Email"
-              className="bg-white rounded-lg px-3 py-2 w-full"
+              placeholder="Email Address"
+              className="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
-            <label className="font-semibold text-lg">Password</label>
+          </div>
+          <div className="relative">
+            <Lock className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="******"
-              className="bg-white rounded-lg px-3 py-2 w-full"
+              placeholder="Password"
+              className="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
-          </form>
-
-          <div className="flex justify-between w-full mt-2 gap-2">
-            <button
-              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg flex-1"
-              onClick={() => navigate("/rider")}
-            >
-              Login
-            </button>
-            <button
-              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg flex-1"
-              onClick={() => navigate("/register/rider")}
-            >
-              Register
-            </button>
           </div>
+        </form>
 
-          <p className="text-center text-sm mt-2">
-            Forgot your password?{" "}
-            <span
-              className="font-bold text-blue-500 cursor-pointer"
-              onClick={() => alert("We sent an email to proceed.")}
-            >
-              Click Here
-            </span>
-          </p>
+        {/* Action Buttons */}
+        <div className="flex justify-between w-full mt-4 gap-4">
+          <motion.button
+            className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-lg flex-1 shadow-lg transition-colors"
+            onClick={handleLogin}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <LogIn size={20} /> Login
+          </motion.button>
+          <motion.button
+            className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2.5 px-6 rounded-lg flex-1 shadow-lg transition-colors"
+            onClick={() => navigate("/register/rider")}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <UserPlus size={20} /> Register
+          </motion.button>
         </div>
-      </FadeInUp>
+
+        {/* Forgot Password Link */}
+        <p className="text-center text-sm mt-4 text-gray-600">
+          Forgot your password?{" "}
+          <span
+            className="font-bold text-green-500 cursor-pointer hover:underline"
+            onClick={() => alert("We sent an email to proceed.")}
+          >
+            Click Here
+          </span>
+        </p>
+      </motion.div>
     </section>
   );
 };

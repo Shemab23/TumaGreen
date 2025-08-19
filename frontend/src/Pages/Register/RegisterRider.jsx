@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FadePage, FadeInUp, ZoomIn } from "../../components/motion/animations";
-import { Send, Users, Truck } from "lucide-react";
+import { motion } from "framer-motion";
+import { User, Smartphone, Mail, Camera, Check, Send } from "lucide-react";
 
 const RegisterRider = () => {
   const navigate = useNavigate();
@@ -31,101 +31,115 @@ const RegisterRider = () => {
   };
 
   return (
-    <FadePage>
-      <div className="h-screen w-screen bg-cyan-400 flex flex-col items-center justify-center relative px-4 overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-gray-950 px-4 py-12">
+      <motion.div
+        className="w-full max-w-xl py-8 px-8 rounded-2xl shadow-2xl bg-gray-900 border border-gray-800 text-white"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="text-center mb-6">
+          <h2 className="text-4xl font-extrabold text-green-400 mb-2">
+            Rider Registration
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Join our team of riders today!
+          </p>
+        </div>
 
-        {/* Floating background icons */}
-        <FadeInUp delay={0.2}>
-          <Users className="absolute top-10 left-10 w-10 h-10 text-green-500 opacity-30" />
-        </FadeInUp>
-        <FadeInUp delay={0.4}>
-          <Truck className="absolute top-80 left-20 w-12 h-12 text-green-500 opacity-30" />
-        </FadeInUp>
-
-        {/* Form container */}
-        <FadeInUp>
-          <div className="w-full max-w-md bg-white/50 backdrop-blur-md p-6 rounded-xl shadow-lg flex flex-col gap-4">
-            <h2 className="text-2xl font-bold text-green-700 text-center mb-4">Rider Registration</h2>
-
-            {/* Full Name */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Full Name:</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your Name"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Phone */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Phone:</label>
-              <input
-                type="text"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="+250 7xxxxxxxx"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Email */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Email:</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your Email '@'"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Profile */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Profile:</label>
-              <input
-                type="file"
-                onChange={(e) => setProfile(e.target.files[0])}
-                className="rounded-lg px-2 py-1 border border-green-300 cursor-pointer"
-              />
-            </div>
-
-            {/* Driving licence checkbox */}
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={licence}
-                onChange={(e) => setLicence(e.target.checked)}
-              />
-              <label>I have a Valid Driving licence for the selected vehicle type</label>
-            </div>
-
-            {/* Terms & conditions checkbox */}
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
-              />
-              <label>I agree to TumaGreen Terms and Conditions</label>
-            </div>
-
-            {/* Submit button */}
-            <ZoomIn>
-              <button
-                onClick={handleSubmit}
-                className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg mt-2 flex items-center justify-center gap-2 hover:bg-green-700 transition-colors"
-              >
-                <Send className="w-5 h-5" /> Submit the Application
-              </button>
-            </ZoomIn>
+        {/* Form Fields */}
+        <form className="w-full grid gap-5">
+          {/* Full Name */}
+          <div className="relative">
+            <User className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
           </div>
-        </FadeInUp>
-      </div>
-    </FadePage>
+
+          {/* Phone */}
+          <div className="relative">
+            <Smartphone className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Phone Number"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="relative">
+            <Mail className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email Address"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          {/* Profile */}
+          <div className="relative">
+            <Camera className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="file"
+              onChange={(e) => setProfile(e.target.files[0])}
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white file:mr-4 file:py-1 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-500 file:text-white hover:file:bg-green-600 transition-colors cursor-pointer"
+            />
+          </div>
+        </form>
+
+        {/* Checkboxes */}
+        <div className="mt-6 space-y-3">
+          <div className="flex items-start gap-2">
+            <input
+              type="checkbox"
+              checked={licence}
+              onChange={(e) => setLicence(e.target.checked)}
+              className="mt-1 w-5 h-5 accent-green-500"
+            />
+            <label className="text-gray-400">I have a Valid Driving licence for the selected vehicle type</label>
+          </div>
+          <div className="flex items-start gap-2">
+            <input
+              type="checkbox"
+              checked={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+              className="mt-1 w-5 h-5 accent-green-500"
+            />
+            <label className="text-gray-400">I agree to TumaGreen Terms and Conditions</label>
+          </div>
+        </div>
+
+        {/* Submit button */}
+        <motion.button
+          onClick={handleSubmit}
+          className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg mt-8 shadow-lg transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Send size={20} /> Submit Application
+        </motion.button>
+
+        {/* Login redirect */}
+        <p className="text-center text-sm mt-6 text-gray-400">
+          Already have an account?{" "}
+          <span
+            className="font-bold text-green-500 cursor-pointer hover:underline"
+            onClick={() => navigate("/login")}
+          >
+            Login Here
+          </span>
+        </p>
+      </motion.div>
+    </section>
   );
 };
 

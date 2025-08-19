@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FadePage, FadeInUp, ZoomIn } from "../../components/motion/animations";
-import { Leaf, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { User, Smartphone, Mail, Lock, Camera, Send } from "lucide-react";
 
 const RegisterUser = () => {
   const navigate = useNavigate();
@@ -28,95 +28,105 @@ const RegisterUser = () => {
   };
 
   return (
-    <FadePage>
-      <div className="h-screen w-screen bg-cyan-400 flex flex-col items-center justify-center relative px-4 overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-gray-950 px-4 py-12">
+      <motion.div
+        className="w-full max-w-xl py-8 px-8 rounded-2xl shadow-2xl bg-gray-900 border border-gray-800 text-white"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="text-center mb-6">
+          <h2 className="text-4xl font-extrabold text-green-400 mb-2">
+            User Registration
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Create your account to get started.
+          </p>
+        </div>
 
-        {/* Floating background icons */}
-        <FadeInUp delay={0.2}>
-          <Leaf className="absolute top-10 left-10 w-10 h-10 text-green-500 opacity-30" />
-        </FadeInUp>
-        <FadeInUp delay={0.4}>
-          <Users className="absolute top-80 left-20 w-12 h-12 text-green-500 opacity-30" />
-        </FadeInUp>
-
-        {/* Registration form container */}
-        <FadeInUp>
-          <div className="w-full max-w-md bg-white/50 backdrop-blur-md p-6 rounded-xl shadow-lg flex flex-col gap-4">
-            <h2 className="text-2xl font-bold text-green-700 text-center mb-4">
-              User Registration
-            </h2>
-
-            {/* Name field */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Name:</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your Name"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Email field */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Email:</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your Email '@'"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Profile upload */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Profile:</label>
-              <input
-                type="file"
-                onChange={(e) => setProfile(e.target.files[0])}
-                className="rounded-lg px-2 py-1 border border-green-300 cursor-pointer"
-              />
-            </div>
-
-            {/* Password */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="**********"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Confirm password */}
-            <div className="flex flex-col">
-              <label className="font-semibold text-green-800">Confirm Password:</label>
-              <input
-                type="password"
-                value={password1}
-                onChange={(e) => setPassword1(e.target.value)}
-                placeholder="**********"
-                className="rounded-lg px-2 h-10 border border-green-300"
-              />
-            </div>
-
-            {/* Register button */}
-            <ZoomIn>
-              <button
-                onClick={handleRegister}
-                className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg mt-2 hover:bg-green-700 transition-colors"
-              >
-                Register
-              </button>
-            </ZoomIn>
+        {/* Form Fields */}
+        <form className="w-full grid gap-5">
+          {/* Full Name */}
+          <div className="relative">
+            <User className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
           </div>
-        </FadeInUp>
-      </div>
-    </FadePage>
+
+          {/* Email */}
+          <div className="relative">
+            <Mail className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email Address"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          {/* Profile */}
+          <div className="relative">
+            <Camera className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="file"
+              onChange={(e) => setProfile(e.target.files[0])}
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white file:mr-4 file:py-1 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-500 file:text-white hover:file:bg-green-600 transition-colors cursor-pointer"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="relative">
+            <Lock className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          {/* Confirm password */}
+          <div className="relative">
+            <Lock className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="password"
+              value={password1}
+              onChange={(e) => setPassword1(e.target.value)}
+              placeholder="Confirm Password"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+        </form>
+
+        {/* Submit button */}
+        <motion.button
+          onClick={handleRegister}
+          className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg mt-8 shadow-lg transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Send size={20} /> Register Account
+        </motion.button>
+
+        {/* Login redirect */}
+        <p className="text-center text-sm mt-6 text-gray-400">
+          Already have an account?{" "}
+          <span
+            className="font-bold text-green-500 cursor-pointer hover:underline"
+            onClick={() => navigate("/login")}
+          >
+            Login Here
+          </span>
+        </p>
+      </motion.div>
+    </section>
   );
 };
 

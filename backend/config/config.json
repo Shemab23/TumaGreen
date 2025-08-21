@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Inga-bru23",
+    "database": "testdb",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "u384442913_ingabotech",
+    "password": "Inga-bru23",
+    "database": "u384442913_tumagreen_db",
+    "host": "srv1593.hstgr.io",
+    "dialect": "mysql"
+  }
+}

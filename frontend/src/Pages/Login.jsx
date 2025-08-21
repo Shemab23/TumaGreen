@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FadePage, FadeInUp, FadeInDown, ZoomIn } from '../components/motion/animations';
 import { useNavigate } from 'react-router-dom';
-import { Leaf, Users, Truck } from 'lucide-react';
 import LoginUser from '../components/Login/LoginUser';
 import LoginRider from '../components/Login/LoginRider';
 
@@ -28,7 +27,7 @@ const Login = () => {
         onClick={() => navigate('/')}
       >
         <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
-          Logo
+          <img src="/logo.svg" alt="" />
         </div>
         <h3 className="font-semibold text-[var(--primary)] text-lg sm:text-xl">TumaGreen</h3>
       </div>
@@ -60,11 +59,6 @@ const SwitchButton = ({ toKind, label }) => (
     <FadePage>
       <div className="h-screen w-screen bg-[var(--bg2)] flex flex-col items-center justify-center relative px-4 overflow-hidden">
 
-        {/* Floating icons */}
-        <FloatingIcon icon={Leaf} size={24} top={10} left={15} delay={0.1} />
-        <FloatingIcon icon={Users} size={30} top={70} left={20} delay={0.3} />
-        <FloatingIcon icon={Truck} size={36} top={40} left={80} delay={0.5} />
-        <FloatingIcon icon={Leaf} size={18} top={80} left={50} delay={0.7} />
 
         {/* Central image placeholder */}
 
@@ -74,7 +68,7 @@ const SwitchButton = ({ toKind, label }) => (
           className="fixed inset-0 w-full h-full object-cover z-[0]"
         />
         {/* Blur overlay */}
-<div className="fixed inset-0 bg-white/40 z-1"></div>
+<div className="fixed inset-0 bg-gray-200/40 z-1"></div>
 
         {/* Top logo */}
         <div className="absolute top-3 left-3 z-5">

@@ -1,0 +1,44 @@
+npm init -y
+npm install express sequelize mysql2
+npm install --save-dev sequelize-cli
+
+npx sequelize-cli init
+
+>> config/config.json
+
+npx sequelize-cli db:create
+
+//creating model
+npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string
+
+// create migration
+ npx sequelize-cli migration:generate --name create-users
+
+// create table in mysql db
+npx sequelize-cli db:migrate
+
+// undo the creation
+npx sequelize-cli db:migrate:undo:all
+
+// create seed
+npx sequelize-cli seed:generate --name demo-finances
+
+// seed one by one
+npx sequelize-cli db:seed --seed 20250821-users-seeder.js
+
+//  seed all at once
+npx sequelize-cli db:seed:all
+
+
+//undo seeding
+npx sequelize-cli db:seed:undo:all
+
+
+
+// ## moving to cloud || production database
+
+// migrations to the cloud
+npx sequelize-cli db:migrate --env production
+
+// seeding to the cloud
+npx sequelize-cli db:seed:all --env production

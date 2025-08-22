@@ -22,13 +22,11 @@ const Application = sequelize.define("application", {
   // },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+    allowNull: false
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+    allowNull: false
   }
 }, {
   tableName: "applications",

@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import sequelize from "./Database/connection.js";
 import userRoutes from './routes/userRoutes.js';
+import riderRoutes from './routes/riderRoutes.js'
 import { testConnection } from './Database/connection.js';
 
 dotenv.config();
@@ -18,8 +19,8 @@ app.use(cors());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 // Parse JSON and form-urlencoded bodies
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // General route
 app.get('/', (req, res) => {
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 
 // Users API
 app.use("/user", userRoutes);
+app.use("/rider", riderRoutes);
 
 // Sync database
 sequelize.sync({ alter: true })

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { User, Smartphone, Mail, Lock, Camera, Send } from "lucide-react";
 
 const RegisterUser = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [profile, setProfile] = useState(null);
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
@@ -29,7 +30,7 @@ const RegisterUser = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-950 px-4 py-12">
-      <motion.div
+      <Motion.div
         className="w-full max-w-xl py-8 px-8 rounded-2xl shadow-2xl bg-gray-900 border border-gray-800 text-white"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -80,6 +81,18 @@ const RegisterUser = () => {
             />
           </div>
 
+          {/* phone */}
+          <div className="relative">
+            <Smartphone className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="+2507XXXXXXX"
+              className="w-full pl-12 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
           {/* Password */}
           <div className="relative">
             <Lock className="absolute top-1/2 left-4 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -106,14 +119,14 @@ const RegisterUser = () => {
         </form>
 
         {/* Submit button */}
-        <motion.button
+        <Motion.button
           onClick={handleRegister}
           className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg mt-8 shadow-lg transition-colors"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <Send size={20} /> Register Account
-        </motion.button>
+        </Motion.button>
 
         {/* Login redirect */}
         <p className="text-center text-sm mt-6 text-gray-400">
@@ -125,7 +138,7 @@ const RegisterUser = () => {
             Login Here
           </span>
         </p>
-      </motion.div>
+      </Motion.div>
     </section>
   );
 };

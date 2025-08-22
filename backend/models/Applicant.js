@@ -8,7 +8,7 @@ const Applicant = sequelize.define("applicant", {
     primaryKey: true,
     autoIncrement: true,
   },
-  application_id: {          // fixed typo
+  application_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
@@ -35,8 +35,8 @@ const Applicant = sequelize.define("applicant", {
 // ========================
 // Relations
 // ========================
-Applicant.belongsTo(Application, { foreignKey: "application_id" });
-Application.hasOne(Applicant, { foreignKey: "application_id" });
+Applicant.belongsTo(Application, { foreignKey: "application_id",as:"application" });
+Application.hasOne(Applicant, { foreignKey: "application_id",as:"applicant" });
 
 
 

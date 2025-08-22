@@ -14,5 +14,6 @@ router.get("/:id", UserController.getUserById);
 router.post("/", upload.single('profile'), UserController.createUser);
 router.put("/:id",UserController.ChangeNumber);
 router.delete("/:id",UserController.DeleteUser);
+router.post("/login",UserController.Login);
 
 export default router;

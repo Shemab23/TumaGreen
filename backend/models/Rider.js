@@ -9,9 +9,14 @@ const Rider = sequelize.define("rider", {
     primaryKey: true,
     autoIncrement: true,
   },
-  applicant_id: {        // fixed typo
+  applicant_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+    password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "nibagiwe"
   },
   rating: {
     type: DataTypes.INTEGER,
@@ -32,6 +37,19 @@ const Rider = sequelize.define("rider", {
     allowNull: false,
     defaultValue: false,
   },
+    latitude: {
+    type: DataTypes.DECIMAL(9, 6),
+    allowNull: true
+  },
+  longitude: {
+    type: DataTypes.DECIMAL(9, 6),
+    allowNull: true
+  },
+  deliveryCount: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 0,
+  },
 }, {
   tableName: "riders",
   freezeTableName: true,
@@ -42,8 +60,8 @@ const Rider = sequelize.define("rider", {
 // ========================
 // Relations
 // ========================
-Rider.belongsTo(Applicant, { foreignKey: "applicant_id" });
-Applicant.hasOne(Rider, { foreignKey: "applicant_id" });
+Rider.belongsTo(Applicant, { foreignKey: "applicant_id", as: "applicant" });
+Applicant.hasOne(Rider, { foreignKey: "applicant_id", as:"rider" });
 
 
 // Rider.hasMany(Order, { foreignKey: "rider_id" });

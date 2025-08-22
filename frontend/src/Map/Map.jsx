@@ -27,12 +27,12 @@ export default function MapInParent() {
 
   return (
     <FadeInUp>
-      <div className="w-full h-[300px] rounded-lg overflow-hidden shadow-md">
+      <div className=" h-[300px] rounded-lg overflow-hidden shadow-md">
         <MapContainer
           center={userLocation || fallbackCenter}
           zoom={14}
           scrollWheelZoom={true}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: '100%', width: '100vw' }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'

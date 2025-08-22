@@ -36,7 +36,6 @@ export default function PaymentSection() {
           <div className="flex flex-col gap-3">
             <input className="p-2 border rounded-lg bg-green-50" placeholder="Card Owner" />
             <input className="p-2 border rounded-lg bg-green-50" placeholder="Bank Issuer" />
-            <input className="p-2 border rounded-lg bg-green-50" placeholder="Amount" />
             <button className="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
               Make Payment
             </button>

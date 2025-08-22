@@ -20,13 +20,11 @@ export async function up(queryInterface, Sequelize) {
       // },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: false
       },
       phone: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: false
       },
     created_at: {
       type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal("NOW()")

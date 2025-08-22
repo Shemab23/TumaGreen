@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt';
 import { uploadImage,deleteImage } from "../../utils/cloudinary.js";
 
 
-
 export default class UserController {
 
     // Get all users
@@ -75,21 +74,41 @@ export default class UserController {
 
     // delete a user
     static DeleteUser = async (req,res)=>{
-    try {
-        const id = req.params.id;
-        const user = await User.findByPk(id);
-        if (!user) return res.status(404).json({error:"User not found"});
+        try {
+            const id = req.params.id;
+            const user = await User.findByPk(id);
+            if (!user) return res.status(404).json({error:"User not found"});
 
-        // delete image on Cloudinary if profile exists
-        if (user.profile) {
-            await deleteImage(`user-${id}`);
+            // delete image on Cloudinary if profile exists
+            if (user.profile) {
+                await deleteImage(`user-${id}`);
+            }
+
+            await User.destroy({where: {id}});
+            res.json({msg:"Record deleted successfully"});
+        } catch (err) {
+            res.status(500).json({Error:err.message})
         }
-
-        await User.destroy({where: {id}});
-        res.json({msg:"Record deleted successfully"});
-    } catch (err) {
-        res.status(500).json({Error:err.message})
     }
+
+    // login
+    static Login = async (req,res)=>{
+        try {
+            const {email,password} = req.body;
+            const User1 = await User.findOne({where: {email}});
+            if(!User1){
+                return res.status(401).json({error:"Invalid email"});
+            }
+            const match = await bcrypt.compare(password,User1.password);
+
+            if(!match){
+                return res.status(401).json({error:"Invalid password"});
+            }
+
+            res.json({msg:"logged in successfully", user: {id: User1.id , email: User1.email}});
+        } catch (err) {
+            res.status(500).json({Error:err.message})
+        }
     }
 
 }

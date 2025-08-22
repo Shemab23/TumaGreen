@@ -16,8 +16,7 @@ const User = sequelize.define("user", {
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,  // keep in model for validation too
+    allowNull: false
   },
   profile: {
     type: DataTypes.STRING,
@@ -25,8 +24,7 @@ const User = sequelize.define("user", {
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+    allowNull: false
   },
   password: {
     type: DataTypes.STRING,

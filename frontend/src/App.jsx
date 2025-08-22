@@ -7,6 +7,7 @@ import RegisterRider from "./Pages/Register/RegisterRider";
 import User from "./Pages/User";
 import Rider from "./Pages/Rider";
 import Admin from "./Pages/Admin";
+import ChoseMap from "./Pages/ChoseMap";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/rider" element={<Rider />} />
         <Route path="/user" element={<User />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/map" element={<ChoseMap />} />
       </Routes>
     </AnimatePresence>
   );

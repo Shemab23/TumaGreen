@@ -37,7 +37,7 @@ const User = () => {
       <div className="grid grid-cols-[auto_1fr] h-screen w-screen">
         {/* Sidebar */}
         <aside
-          className={`bg-green-100 p-4 flex flex-col space-y-4 overflow-y-auto fixed md:static top-0 left-0 h-full z-40 w-64 transform transition-transform duration-300 ${
+          className={`bg-green-100 p-4 flex flex-col space-y-4 overflow-y-auto fixed md:static top-0 left-0 h-full z-400 w-64 transform transition-transform duration-300 ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0`}
         >
@@ -68,22 +68,22 @@ const User = () => {
         {/* Overlay for mobile */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black/30 z-30 md:hidden"
+            className="fixed inset-0 bg-black/30 z-50 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
 
         {/* Main Content */}
-        <main className="overflow-y-auto z-0 bg-green-50 p-4 space-y-6">
-          <section id="map" className="h-[300px] rounded-lg overflow-hidden shadow-md">
+        <main className="overflow-y-auto z-6 bg-green-50 w-full p-4 space-y-6">
+          <section id="map" className="h-[300px] rounded-lg z-1 overflow-hidden shadow-md">
             <MapInParent />
           </section>
 
-          <section id="ride" className="grid gap-4 md:grid-cols-2 w-full">
-            <div className="w-full">
+          <section id="ride" className="grid gap-4 md:grid-cols-2 z-2 w-full">
+            <div className="z-7">
               <RideRequest />
             </div>
-            <div className="w-full">
+            <div className="z-1">
               <PaymentSection />
             </div>
           </section>
